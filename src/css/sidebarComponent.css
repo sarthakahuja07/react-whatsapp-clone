@@ -2,6 +2,7 @@
   flex: 0.35;
   display: flex;
   flex-direction: column;
+  max-width: 35%;
 }
 
 .sidebar-header {
@@ -69,8 +70,9 @@
 }
 
 .sidebar-chat {
-	display: flex;
-	padding: 15px;
+  overflow: hidden;
+  display: flex;
+	padding: 20px;
 	cursor: pointer;
 	border-bottom:2px solid #f6f6f6;
 }
@@ -82,7 +84,13 @@
 .info{
 	margin-left: 15px;
 }
+.info>*{
+  white-space: nowrap; 
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
 .info>p{
-	font-size: 16px;
+  font-size: 16px;
 	margin-bottom: 8px;
 }
