@@ -7,7 +7,7 @@ function SidebarChat() {
 		<div className="sidebar-chat">
 			<Avatar alt="Remy Sharp" src="https://avatars.dicebear.com/api/human/sarthak.svg" />
 			<div className="info">
-				<h2 className="info-name">Name</h2> 
+				<h3 className="info-name">Name</h3> 
 					{/* TODO: 
 					Add a character Limit to mesaage and name
 					*/}

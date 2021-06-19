@@ -6,6 +6,8 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import ChatMessage from './ChatMessageComponent';
+import MicIcon from '@material-ui/icons/Mic';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 function Chat() {
 	return (
 		<div className="chat-component">
@@ -32,18 +34,27 @@ function Chat() {
 			</div>
 
 			<div className="chat-body">
-				<ChatMessage/>
-				<ChatMessage/>
-				<ChatMessage/>
-				<ChatMessage/>
-				<ChatMessage/>
-				<ChatMessage/>
-				<ChatMessage/>
+				<ChatMessage />
+				<ChatMessage />
+				<ChatMessage />
+				<ChatMessage />
+				<ChatMessage />
+				<ChatMessage />
+				<ChatMessage />
 
 			</div>
 
 			<div className="chat-footer">
-
+				<IconButton>
+					<InsertEmoticonIcon />
+				</IconButton>
+				<form>
+					<textarea type="text" placeholder="Type a message" />
+					<button type="submit"> Send a Message</button>
+				</form>
+				<IconButton>
+				<MicIcon />
+				</IconButton>
 			</div>
 		</div>
 	)
