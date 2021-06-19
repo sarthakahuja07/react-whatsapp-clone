@@ -1,11 +1,13 @@
 import React from 'react'
 import { Avatar, IconButton } from '@material-ui/core';
-import '../css/sidebarComponent.css'
 import ChatIcon from '@material-ui/icons/Chat';
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { SearchOutlined } from "@material-ui/icons";
+import SearchIcon from '@material-ui/icons/Search';
 import Input from '@material-ui/core/Input';
+import '../css/sidebarComponent.css'
+
+import SidebarChat from './SidebarChatComponent';
 
 function Sidebar() {
     return (
@@ -26,12 +28,31 @@ function Sidebar() {
             </div>
             <div className="sidebar-search">
                 <div className="search-container">
-                    <SearchOutlined />
-                    <input type="search" name="name_search" className="" id="name_search" />
+                    <SearchIcon  />
+                    <input type="search" name="name_search" placeholder="Search a chat" className="" id="name_search" />
                 </div>
             </div>
 
-            <div className="sidebar-chat">
+            <div className="sidebar-chats">
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
+                <SidebarChat></SidebarChat>
 
             </div>
 

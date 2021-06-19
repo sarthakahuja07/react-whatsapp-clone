@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './SidebarComponent';
 import Chat from './ChatComponent';
+
 import '../css/mainComponent.css';
 
 function Main(props) {
