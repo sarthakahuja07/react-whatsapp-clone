@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
-
+import ChatMessage from './ChatMessageComponent';
 function Chat() {
 	return (
 		<div className="chat-component">
@@ -32,6 +32,13 @@ function Chat() {
 			</div>
 
 			<div className="chat-body">
+				<ChatMessage/>
+				<ChatMessage/>
+				<ChatMessage/>
+				<ChatMessage/>
+				<ChatMessage/>
+				<ChatMessage/>
+				<ChatMessage/>
 
 			</div>
 
