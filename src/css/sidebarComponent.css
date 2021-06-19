@@ -70,7 +70,7 @@
 
 .sidebar-chat {
 	display: flex;
-	padding: 20px;
+	padding: 15px;
 	cursor: pointer;
 	border-bottom:2px solid #f6f6f6;
 }
