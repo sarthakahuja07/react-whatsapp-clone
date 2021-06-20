@@ -58,9 +58,6 @@
   .chat-message-component .time{
       margin-left: 10px;
       color: grey;
-      position: absolute;
-      right: 20px;
-      bottom:5px;
       font-size: xx-small
   }
 
@@ -72,29 +69,32 @@
 
   .chat-footer{
       display: flex;
-      height: 62px;
+      /* min-height: 62px; */
       border-top: 1px solid lightgray;
   }
 
-  .chat-footer > form{
+  .chat-footer > .form{
     flex: 1;
     display: flex;
     padding: 10px;
 
 }
 
-.chat-footer > form > textarea{
+.chat-footer > .form > .message-input{
     flex: 1;
     border-radius: 30px;
     padding: 10px 20px;
     border: none;
+    resize: none;
+    
 }
 
-.chat-footer > form > button{
+.chat-footer > .form > .input-button{
     display: none;
 }
-.chat-footer > form > textarea:focus,
-.chat-footer > form > textarea:focus-visible {
+
+.chat-footer > .form > .message-input:focus,
+.chat-footer > .form > .message-input:focus-visible {
   outline: none;
 }
 

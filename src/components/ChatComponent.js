@@ -8,7 +8,16 @@ import IconButton from '@material-ui/core/IconButton';
 import ChatMessage from './ChatMessageComponent';
 import MicIcon from '@material-ui/icons/Mic';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import { Formik, Form, Field } from 'formik';
+
 function Chat() {
+
+	function pressedEnter(e){
+		if(e.key==="Enter"){
+			document.forms.submit();
+		}
+	}
+
 	return (
 		<div className="chat-component">
 			<div className="chat-header">
@@ -45,19 +54,40 @@ function Chat() {
 			</div>
 
 			<div className="chat-footer">
+
 				<IconButton>
 					<InsertEmoticonIcon />
 				</IconButton>
-				<form>
+				<Formik
+					initialValues={{ message: '' }}
+					onSubmit={(values, { setSubmitting }) => {
+						setTimeout(() => {
+							alert(JSON.stringify(values, null, 2));
+							setSubmitting(false);
+						}, 400);
+					}}>
+					{({ isSubmitting }) => (
+						<Form className="form" autoComplete="off">
+							<Field className="message-input" name="message" id="message" placeholder="Type a message" />
+							<button className="input-button" type="submit" disabled={isSubmitting}>
+								Send A Message
+							</button>
+						</Form>
+					)}
+				</Formik>
+				
+				{/* <form>
 					<textarea type="text" placeholder="Type a message" />
 					<button type="submit"> Send a Message</button>
-				</form>
+				</form> */}
 				<IconButton>
-				<MicIcon />
+					<MicIcon />
 				</IconButton>
 			</div>
 		</div>
+		
 	)
+	
 }
 
 export default Chat;
