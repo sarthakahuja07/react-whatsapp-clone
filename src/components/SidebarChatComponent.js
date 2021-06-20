@@ -5,7 +5,7 @@ function SidebarChat() {
 
 	return (
 		<div className="sidebar-chat">
-			<Avatar alt="Remy Sharp" src="https://avatars.dicebear.com/api/human/sarthak.svg" />
+			<Avatar alt="Remy Sharp"  />
 			<div className="info">
 				<h3 className="info-name">Name</h3> 
 					{/* TODO: 

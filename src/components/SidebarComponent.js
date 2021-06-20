@@ -13,7 +13,7 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar-header">
-                <Avatar src="https://avatars.dicebear.com/api/human/sarthak.svg" />
+                <Avatar />
                 <div className="sidebar-header-right">
                     <IconButton>
                         <DonutLargeIcon />

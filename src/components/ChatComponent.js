@@ -21,7 +21,7 @@ function Chat() {
 	return (
 		<div className="chat-component">
 			<div className="chat-header">
-				<Avatar alt="Remy Sharp" src="https://avatars.dicebear.com/api/human/sarthak.svg" />
+				<Avatar alt="Remy Sharp"  />
 				<div className="header-info">
 					<h3>Name</h3>
 					<p>Last seen..</p>
