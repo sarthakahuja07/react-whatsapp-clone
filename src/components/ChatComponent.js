@@ -12,12 +12,6 @@ import { Formik, Form, Field } from 'formik';
 
 function Chat() {
 
-	function pressedEnter(e){
-		if(e.key==="Enter"){
-			document.forms.submit();
-		}
-	}
-
 	return (
 		<div className="chat-component">
 			<div className="chat-header">
@@ -64,7 +58,7 @@ function Chat() {
 						setTimeout(() => {
 							alert(JSON.stringify(values, null, 2));
 							setSubmitting(false);
-						}, 400);
+						}, 400);	
 					}}>
 					{({ isSubmitting }) => (
 						<Form className="form" autoComplete="off">
@@ -75,11 +69,7 @@ function Chat() {
 						</Form>
 					)}
 				</Formik>
-				
-				{/* <form>
-					<textarea type="text" placeholder="Type a message" />
-					<button type="submit"> Send a Message</button>
-				</form> */}
+
 				<IconButton>
 					<MicIcon />
 				</IconButton>
