@@ -5,7 +5,7 @@ function SidebarChat(props) {
 	return (
 		
 		<div className="sidebar-chat">
-			<Avatar />
+			<Avatar src={props.user.data().picture}/>
 			<div className="info">
 				<h3 className="info-name">{props.user.data().name}</h3> 
 					{/* TODO: 

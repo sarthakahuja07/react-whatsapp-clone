@@ -8,8 +8,6 @@ function Login() {
 
 
     function signInWithGoogle() {
-    
-
         auth
             .signInWithPopup(provider)
             .then((result) => {
