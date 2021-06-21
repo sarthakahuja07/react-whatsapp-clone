@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import Main from './components/Main' 
-
+import Login from './components/LoginComponent';
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Login/>
+      {/* <Main /> */}
     </div>
   );
 }

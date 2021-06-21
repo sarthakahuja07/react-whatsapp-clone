@@ -4,8 +4,6 @@ import ChatIcon from '@material-ui/icons/Chat';
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from '@material-ui/icons/Search';
-import { collection, getDocs } from "firebase/firestore";
-import Input from '@material-ui/core/Input';
 import db from '../firebase';
 import '../css/sidebarComponent.css'
 
