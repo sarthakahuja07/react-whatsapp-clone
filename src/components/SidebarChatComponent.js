@@ -1,13 +1,13 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
 
-function SidebarChat() {
-
+function SidebarChat(props) {
 	return (
+		
 		<div className="sidebar-chat">
-			<Avatar alt="Remy Sharp"  />
+			<Avatar />
 			<div className="info">
-				<h3 className="info-name">Name</h3> 
+				<h3 className="info-name">{props.user.data().name}</h3> 
 					{/* TODO: 
 					Add a character Limit to mesaage and name
 					*/}
