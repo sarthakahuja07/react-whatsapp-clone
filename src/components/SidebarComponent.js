@@ -29,8 +29,8 @@ function Sidebar() {
 
     var sidebarChats = users.map((user) => {
         return (
-            <Link to={`/chat/${user.id}`}>
-                <div key={user.id}>
+            <Link to={`/chat/${user.id}`} key={user.id}>
+                <div>
                     <SidebarChat user={user} ></SidebarChat>
                 </div>
             </Link>

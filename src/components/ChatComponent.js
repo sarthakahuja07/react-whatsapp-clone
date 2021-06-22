@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import '../css/chatComponents.css';
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,19 +9,31 @@ import ChatMessage from './ChatMessageComponent';
 import MicIcon from '@material-ui/icons/Mic';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { Formik, Form, Field } from 'formik';
-import db, {provider,auth} from '../firebase';
-import {useParams} from 'react-router-dom';
+import db, { provider, auth } from '../firebase';
+import { useParams } from 'react-router-dom';
+
 
 function Chat(props) {
 	let { userID } = useParams();
-	console.log(userID)
+	const [user, setUser]=useState("");
+
+	useEffect(() => {
+		db.collection('users').doc(userID)
+			.onSnapshot((doc) => {
+				var u = doc.data()
+				console.log(u);
+				setUser(u);
+			})
+	}, [userID]);
+
 	return (
 		<div className="chat-component">
 			<div className="chat-header">
-				<Avatar alt="Remy Sharp"  />
+				<Avatar src={user.picture} />
 				<div className="header-info">
-					<h3>Name</h3>
-					<p>Last seen..</p>
+					<h3>{user.name}</h3>
+					<p>last seen...</p>
+
 				</div>
 				<div className="header-right">
 					<IconButton>
@@ -61,7 +73,7 @@ function Chat(props) {
 						setTimeout(() => {
 							alert(JSON.stringify(values, null, 2));
 							setSubmitting(false);
-						}, 400);	
+						}, 400);
 					}}>
 					{({ isSubmitting }) => (
 						<Form className="form" autoComplete="off">
@@ -78,9 +90,9 @@ function Chat(props) {
 				</IconButton>
 			</div>
 		</div>
-		
+
 	)
-	
+
 }
 
 export default Chat;
