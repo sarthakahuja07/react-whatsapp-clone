@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/chatComponents.css';
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
@@ -14,19 +14,29 @@ import { useParams } from 'react-router-dom';
 
 
 function Chat(props) {
+	console.log("render")
 	let { userID } = useParams();
-	const [user, setUser]=useState("");
+	const [user, setUser] = useState("");
+	const [messages, setMessages] = useState([])
 
 	useEffect(() => {
-		db.collection('users').doc(userID)
-			.onSnapshot((doc) => {
-				var u = doc.data()
-				console.log(u);
-				setUser(u);
-			})
+		if (userID) {
+			console.log(userID)
+			db.collection('users').doc(userID)
+				.onSnapshot((doc) => {
+					var u = doc.data()
+					setUser(u);
+				});
+
+			db.collection('users').doc(userID).collection("messages").orderBy("timestamp", "asc").onSnapshot(snapshot => {
+				var mess = (snapshot.docs.map(doc => doc.data()))
+				setMessages(mess);
+			});
+		}
 	}, [userID]);
 
 	return (
+
 		<div className="chat-component">
 			<div className="chat-header">
 				<Avatar src={user.picture} />
@@ -52,14 +62,12 @@ function Chat(props) {
 			</div>
 
 			<div className="chat-body">
-				<ChatMessage />
-				<ChatMessage />
-				<ChatMessage />
-				<ChatMessage />
-				<ChatMessage />
-				<ChatMessage />
-				<ChatMessage />
-
+				
+				{messages.map(message=>{
+					return(
+						<ChatMessage message={message}></ChatMessage>
+					);
+				})}
 			</div>
 
 			<div className="chat-footer">
