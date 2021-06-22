@@ -11,12 +11,15 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { Formik, Form, Field } from 'formik';
 import db, { provider, auth } from '../firebase';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function Chat(props) {
+
 	let { userID } = useParams();
 	const [user, setUser] = useState("");
-	const [messages, setMessages] = useState([])
+	const [messages, setMessages] = useState([]);
+	const currUser = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
 
 	useEffect(() => {
 		if (userID) {
@@ -26,8 +29,14 @@ function Chat(props) {
 					setUser(u);
 				});
 
-			db.collection('users').doc(userID).collection("messages").orderBy("timestamp", "asc").onSnapshot(snapshot => {
-				var mess = (snapshot.docs.map(doc => doc.data()))
+			// db.collection('users').doc(userID).collection("messages").where("friend","==",currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+			// 	snapshot.docs.map(doc => {
+			// 		console.log(doc.data())
+			// 	})
+			// });
+
+			db.collection('users').doc(userID).collection("messages").where("friend","==",currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+				var mess = (snapshot.docs.map(doc => doc))
 				setMessages(mess);
 			});
 		}
@@ -60,10 +69,12 @@ function Chat(props) {
 			</div>
 
 			<div className="chat-body">
-				
-				{messages.map(message=>{
-					return(
-						<ChatMessage message={message}></ChatMessage>
+
+				{messages.map(message => {
+					return (
+						<React.Fragment  key={message.id}>
+							<ChatMessage message={message.data()}></ChatMessage>
+						</React.Fragment>
 					);
 				})}
 			</div>
