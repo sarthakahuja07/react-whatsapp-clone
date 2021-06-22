@@ -9,7 +9,7 @@ import '../css/sidebarComponent.css'
 import {Link} from 'react-router-dom'
 import SidebarChat from './SidebarChatComponent';
 
-function Sidebar() {
+function Sidebar(props) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar-header">
-                <Avatar />
+                <Avatar src={props.user.photoURL}/>
                 <div className="sidebar-header-right">
                     <IconButton>
                         <DonutLargeIcon />

@@ -7,18 +7,14 @@ import {useSelector} from 'react-redux';
 import '../css/mainComponent.css';
 
 function Main(props) {
-    if(localStorage.getItem("user")){
-        console.log("hi");
-    }
-
     const user = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
-    
+    console.log(user);
     return (
         <React.Fragment>
             {!user ? (<Login />) : (
                 <div className="app-body-container">
                     <div className="app-body">
-                        <Sidebar />
+                        <Sidebar user={user} />
                         <Switch>
                             <Route path="/chat/:userID" component={Chat}></Route>
                         </Switch>
