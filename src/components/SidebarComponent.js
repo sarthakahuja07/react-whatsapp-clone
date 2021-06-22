@@ -8,12 +8,14 @@ import db from '../firebase';
 import '../css/sidebarComponent.css'
 import {Link} from 'react-router-dom'
 import SidebarChat from './SidebarChatComponent';
+import {useSelector} from 'react-redux';
 
 function Sidebar(props) {
     const [users, setUsers] = useState([]);
+    const user = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
 
     useEffect(() => {
-        const unsubscribe = db.collection("users")
+        const unsubscribe = db.collection("users").where("email","!=",user.email)
             .onSnapshot((querySnapshot) => {
                 var userArray = [];
                 querySnapshot.forEach((doc) => {
