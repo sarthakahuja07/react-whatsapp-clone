@@ -14,14 +14,12 @@ import { useParams } from 'react-router-dom';
 
 
 function Chat(props) {
-	console.log("render")
 	let { userID } = useParams();
 	const [user, setUser] = useState("");
 	const [messages, setMessages] = useState([])
 
 	useEffect(() => {
 		if (userID) {
-			console.log(userID)
 			db.collection('users').doc(userID)
 				.onSnapshot((doc) => {
 					var u = doc.data()

@@ -53,15 +53,21 @@
     width: fit-content;
     max-width: 50%;
     margin-bottom: 30px;
-  }
-
+    display: flex;
+    align-items: center;
+}
+.chat-message > p{
+    word-break: break-all;
+    flex: 1;
+}
   .chat-message-component .time{
-      margin-left: 10px;
+    align-self: flex-end;
+    margin-left: 10px;
       color: grey;
       font-size: xx-small
   }
 
-  .chat-message-receiver{
+  .chat-message-sender{
       margin-left: auto;
       background: #dcf8c6;
   }
