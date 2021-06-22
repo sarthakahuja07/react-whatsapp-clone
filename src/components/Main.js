@@ -3,21 +3,14 @@ import Sidebar from './SidebarComponent';
 import Chat from './ChatComponent';
 import { Switch, Route} from 'react-router-dom';
 import Login from './LoginComponent';
-
+import {useSelector} from 'react-redux';
 import '../css/mainComponent.css';
 
 function Main(props) {
-
-    // function renderChats(){
-        
-    //     return(
-    //         <Chat id={userID}></Chat>
-    //     )
-    // }
-
+    const user = useSelector(state => state.user)
     return (
         <React.Fragment>
-            {false ? (<Login />) : (
+            {!user ? (<Login />) : (
                 <div className="app-body-container">
                     <div className="app-body">
                         <Sidebar />
