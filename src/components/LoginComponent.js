@@ -9,21 +9,11 @@ function Login() {
     const dispatch = useDispatch()
 
     function signInWithGoogle() {
-
-        
-
-      
-
-
-
-
-
         auth
             .signInWithPopup(provider)
             .then((result) => {
                 var user = result.user;
                 dispatch(userSignIn(user));
-
                 var dbUsers = db.collection("users");
                 dbUsers.where("email", "==", user.email)
                     .get()

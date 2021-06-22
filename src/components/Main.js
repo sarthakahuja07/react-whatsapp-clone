@@ -7,7 +7,12 @@ import {useSelector} from 'react-redux';
 import '../css/mainComponent.css';
 
 function Main(props) {
-    const user = useSelector(state => state.user)
+    if(localStorage.getItem("user")){
+        console.log("hi");
+    }
+
+    const user = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
+    
     return (
         <React.Fragment>
             {!user ? (<Login />) : (
