@@ -9,9 +9,12 @@ import ChatMessage from './ChatMessageComponent';
 import MicIcon from '@material-ui/icons/Mic';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { Formik, Form, Field } from 'formik';
+import db, {provider,auth} from '../firebase';
+import {useParams} from 'react-router-dom';
 
-function Chat() {
-
+function Chat(props) {
+	let { userID } = useParams();
+	console.log(userID)
 	return (
 		<div className="chat-component">
 			<div className="chat-header">

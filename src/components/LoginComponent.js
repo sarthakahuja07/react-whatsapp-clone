@@ -4,9 +4,6 @@ import { Button } from '@material-ui/core';
 import db, { auth, provider } from '../firebase';
 
 function Login() {
-
-
-
     function signInWithGoogle() {
         auth
             .signInWithPopup(provider)

@@ -1,13 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import Main from './components/Main' 
-import Login from './components/LoginComponent';
+import {BrowserRouter} from 'react-router-dom';
+
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       {/* <Login/> */}
       <Main />
     </div>
+    </BrowserRouter>
   );
 }
 <style>

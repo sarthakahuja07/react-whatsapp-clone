@@ -6,7 +6,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchIcon from '@material-ui/icons/Search';
 import db from '../firebase';
 import '../css/sidebarComponent.css'
-
+import {Link} from 'react-router-dom'
 import SidebarChat from './SidebarChatComponent';
 
 function Sidebar() {
@@ -15,7 +15,7 @@ function Sidebar() {
     useEffect(() => {
         const unsubscribe = db.collection("users")
             .onSnapshot((querySnapshot) => {
-                var userArray=[];
+                var userArray = [];
                 querySnapshot.forEach((doc) => {
                     userArray.push(doc);
                 });
@@ -27,11 +27,14 @@ function Sidebar() {
     }, [])
 
 
-    var sidebarChats=users.map((user)=>{
-        return(
-            <div key={user.id}>
-                <SidebarChat user = {user} ></SidebarChat> 
-            </div>
+    var sidebarChats = users.map((user) => {
+        return (
+            <Link to={`/chat/${user.id}`}>
+                <div key={user.id}>
+                    <SidebarChat user={user} ></SidebarChat>
+                </div>
+            </Link>
+
         );
     });
 
