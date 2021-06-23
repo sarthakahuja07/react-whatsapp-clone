@@ -82,7 +82,7 @@ function Chat(props) {
 			</div>
 
 			<div className="chat-body" id="chat-body">
-
+				{console.log("rendering")}
 				{messages.map(message => {
 					return (
 						<React.Fragment key={message.id}>
