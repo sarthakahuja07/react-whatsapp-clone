@@ -60,7 +60,6 @@
     align-items: center;
 }
 .chat-message > p{
-    word-break: break-all;
     flex: 1;
 }
   .chat-message-component .time{
