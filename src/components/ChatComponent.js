@@ -21,12 +21,7 @@ function Chat(props) {
 	const [messages, setMessages] = useState([]);
 	const currUser = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
 
-	function updateScroll() {
-		var element = document.getElementById("chat-body");
-		if (element) {
-			element.scrollTop = element.scrollHeight;
-		}
-	}
+
 
 	useEffect(() => {
 		if (userID) {
