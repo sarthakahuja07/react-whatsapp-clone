@@ -1,7 +1,11 @@
 import React from 'react'
 
 function ChatMessage(props) {
-    var d = new Date(props.message.timestamp.seconds * 1000)
+    if(props.message.timestamp){
+        var d = new Date(props.message.timestamp.seconds * 1000)
+    }else{
+        d=new Date();
+    }
 
     return (
         <React.Fragment  key={props.message}>

@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/loginComponent.css'
 import { Button } from '@material-ui/core';
 import db, { auth, provider } from '../firebase';
-import {userSignIn} from '../redux/actionCreator';
+import { userSignIn } from '../redux/actionCreator';
 import { useDispatch } from 'react-redux'
 
 function Login() {
@@ -18,9 +18,9 @@ function Login() {
                 dbUsers.where("email", "==", user.email)
                     .get()
                     .then((querySnapshot) => {
-                        
-                        if((querySnapshot.size)===0){
-                            
+                        //new user
+                        if ((querySnapshot.size) === 0) {
+
                             db.collection("users").add({
                                 name: user.displayName,
                                 email: user.email,
@@ -31,21 +31,19 @@ function Login() {
                                 })
                                 .catch((error) => {
                                     console.error("Error adding document: ", error);
-                                });        
-                                    
-                        }else{
-                            alert("already exists")
+                                });
+
                         }
                     })
                     .catch((error) => {
                         console.log("Error getting documents: ", error);
                     });
 
-                
+
             }).catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(errorCode+ " : " +errorMessage)
+                console.log(errorCode + " : " + errorMessage)
             });
 
 

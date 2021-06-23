@@ -12,7 +12,7 @@ import { Formik, Form, Field } from 'formik';
 import db, { provider, auth } from '../firebase';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import firebase from 'firebase';
 
 function Chat(props) {
 
@@ -35,7 +35,7 @@ function Chat(props) {
 			// 	})
 			// });
 
-			db.collection('users').doc(userID).collection("messages").where("friend","==",currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+			db.collection('users').doc(userID).collection("messages").where("friend", "==", currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
 				var mess = (snapshot.docs.map(doc => doc))
 				setMessages(mess);
 			});
@@ -72,7 +72,7 @@ function Chat(props) {
 
 				{messages.map(message => {
 					return (
-						<React.Fragment  key={message.id}>
+						<React.Fragment key={message.id}>
 							<ChatMessage message={message.data()}></ChatMessage>
 						</React.Fragment>
 					);
@@ -87,10 +87,31 @@ function Chat(props) {
 				<Formik
 					initialValues={{ message: '' }}
 					onSubmit={(values, { setSubmitting }) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
-							setSubmitting(false);
-						}, 400);
+						db.collection("users").doc(userID).collection("messages").add({
+							message: values.message,
+							isReceiver: true,
+							friend: currUser.email,
+							timestamp: firebase.firestore.FieldValue.serverTimestamp()
+						})
+						db.collection("users").where("email", "==", currUser.email)
+							.get()
+							.then((querySnapshot) => {
+								querySnapshot.forEach((doc) => {
+									db.collection("users").doc(doc.id).collection("messages").add({
+										message:values.message,
+										isReceiver:false,
+										friend:user.email,
+										timestamp:firebase.firestore.FieldValue.serverTimestamp()
+									})
+								});
+							})
+							.catch((error) => {
+								console.log("Error getting documents: ", error);
+							});
+						
+
+						setSubmitting(false);
+
 					}}>
 					{({ isSubmitting }) => (
 						<Form className="form" autoComplete="off">
