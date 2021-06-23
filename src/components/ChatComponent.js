@@ -62,7 +62,7 @@ function Chat(props) {
 				<div className="header-info">
 					<h3>{user.name}</h3>
 					
-					<p>{"Last Seen "+(messages[0] &&  messages[0].data() ? new Date(messages[0].data().timestamp.seconds*1000).toLocaleTimeString():"")}</p>
+					<p>{"Last Seen "+(messages[0] &&  messages[0].data() && messages[0].data().timestamp? new Date(messages[0].data().timestamp.seconds*1000).toLocaleTimeString():"")}</p>
 
 				</div>
 				<div className="header-right">
