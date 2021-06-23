@@ -8,7 +8,7 @@ import '../css/mainComponent.css';
 
 function Main(props) {
     const user = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
-    console.log(user);
+ 
     return (
         <React.Fragment>
             {!user ? (<Login />) : (

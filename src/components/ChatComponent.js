@@ -15,18 +15,27 @@ import { useSelector } from 'react-redux';
 import firebase from 'firebase';
 
 function Chat(props) {
-
+	
 	let { userID } = useParams();
 	const [user, setUser] = useState("");
 	const [messages, setMessages] = useState([]);
 	const currUser = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
+	
+	function updateScroll(){
+		var element = document.getElementById("chat-body");
+		if(element){
+			element.scrollTop = element.scrollHeight;
+		}
+	}
 
 	useEffect(() => {
 		if (userID) {
 			db.collection('users').doc(userID)
 				.onSnapshot((doc) => {
 					var u = doc.data()
+					console.log(u);
 					setUser(u);
+
 				});
 
 			// db.collection('users').doc(userID).collection("messages").where("friend","==",currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
@@ -35,12 +44,16 @@ function Chat(props) {
 			// 	})
 			// });
 
-			db.collection('users').doc(userID).collection("messages").where("friend", "==", currUser.email).orderBy("timestamp", "asc").onSnapshot(snapshot => {
+			var ref=db.collection('users').doc(userID).collection("messages").where("friend", "==", currUser.email)
+			
+			
+			ref.orderBy("timestamp","desc").onSnapshot(snapshot => {
 				var mess = (snapshot.docs.map(doc => doc))
 				setMessages(mess);
 			});
 		}
 	}, [userID]);
+
 
 	return (
 
@@ -68,7 +81,7 @@ function Chat(props) {
 				</div>
 			</div>
 
-			<div className="chat-body">
+			<div className="chat-body" id="chat-body">
 
 				{messages.map(message => {
 					return (
@@ -86,7 +99,7 @@ function Chat(props) {
 				</IconButton>
 				<Formik
 					initialValues={{ message: '' }}
-					onSubmit={(values, { setSubmitting }) => {
+					onSubmit={(values, { resetForm,setSubmitting }) => {
 						db.collection("users").doc(userID).collection("messages").add({
 							message: values.message,
 							isReceiver: true,
@@ -108,10 +121,8 @@ function Chat(props) {
 							.catch((error) => {
 								console.log("Error getting documents: ", error);
 							});
-						
-
+						resetForm();
 						setSubmitting(false);
-
 					}}>
 					{({ isSubmitting }) => (
 						<Form className="form" autoComplete="off">
