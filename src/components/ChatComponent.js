@@ -15,15 +15,15 @@ import { useSelector } from 'react-redux';
 import firebase from 'firebase';
 
 function Chat(props) {
-	
+
 	let { userID } = useParams();
 	const [user, setUser] = useState("");
 	const [messages, setMessages] = useState([]);
 	const currUser = useSelector(state => state.user || JSON.parse(localStorage.getItem("user")))
-	
-	function updateScroll(){
+
+	function updateScroll() {
 		var element = document.getElementById("chat-body");
-		if(element){
+		if (element) {
 			element.scrollTop = element.scrollHeight;
 		}
 	}
@@ -33,7 +33,6 @@ function Chat(props) {
 			db.collection('users').doc(userID)
 				.onSnapshot((doc) => {
 					var u = doc.data()
-					console.log(u);
 					setUser(u);
 
 				});
@@ -44,10 +43,10 @@ function Chat(props) {
 			// 	})
 			// });
 
-			var ref=db.collection('users').doc(userID).collection("messages").where("friend", "==", currUser.email)
-			
-			
-			ref.orderBy("timestamp","desc").onSnapshot(snapshot => {
+			var ref = db.collection('users').doc(userID).collection("messages").where("friend", "==", currUser.email)
+
+
+			ref.orderBy("timestamp", "desc").onSnapshot(snapshot => {
 				var mess = (snapshot.docs.map(doc => doc))
 				setMessages(mess);
 			});
@@ -62,7 +61,8 @@ function Chat(props) {
 				<Avatar src={user.picture} />
 				<div className="header-info">
 					<h3>{user.name}</h3>
-					{/* <p>{messages[0]?.data().timestamp.seconds*1000}</p> */}
+					
+					<p>{"Last Seen "+(messages[0] &&  messages[0].data() ? new Date(messages[0].data().timestamp.seconds*1000).toLocaleTimeString():"")}</p>
 
 				</div>
 				<div className="header-right">
@@ -99,7 +99,7 @@ function Chat(props) {
 				</IconButton>
 				<Formik
 					initialValues={{ message: '' }}
-					onSubmit={(values, { resetForm,setSubmitting }) => {
+					onSubmit={(values, { resetForm, setSubmitting }) => {
 						db.collection("users").doc(userID).collection("messages").add({
 							message: values.message,
 							isReceiver: true,
@@ -111,10 +111,10 @@ function Chat(props) {
 							.then((querySnapshot) => {
 								querySnapshot.forEach((doc) => {
 									db.collection("users").doc(doc.id).collection("messages").add({
-										message:values.message,
-										isReceiver:false,
-										friend:user.email,
-										timestamp:firebase.firestore.FieldValue.serverTimestamp()
+										message: values.message,
+										isReceiver: false,
+										friend: user.email,
+										timestamp: firebase.firestore.FieldValue.serverTimestamp()
 									})
 								});
 							})
