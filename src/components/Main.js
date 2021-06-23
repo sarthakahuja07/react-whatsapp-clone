@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './SidebarComponent';
 import Chat from './ChatComponent';
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route ,Redirect} from 'react-router-dom';
 import Login from './LoginComponent';
 import {useSelector} from 'react-redux';
 import '../css/mainComponent.css';
@@ -17,6 +17,7 @@ function Main(props) {
                         <Sidebar user={user} />
                         <Switch>
                             <Route path="/chat/:userID" component={Chat}></Route>
+                            <Redirect to="/" ></Redirect>
                         </Switch>
                     </div>
 
