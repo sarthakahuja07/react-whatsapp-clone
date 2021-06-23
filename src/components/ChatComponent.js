@@ -62,7 +62,7 @@ function Chat(props) {
 				<Avatar src={user.picture} />
 				<div className="header-info">
 					<h3>{user.name}</h3>
-					<p>last seen...</p>
+					{/* <p>{messages[0]?.data().timestamp.seconds*1000}</p> */}
 
 				</div>
 				<div className="header-right">
