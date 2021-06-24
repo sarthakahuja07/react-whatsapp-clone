@@ -66,8 +66,6 @@ function Sidebar(props) {
                         </IconButton>
                     </Link>
                     </Tooltip>
-                    
-
                 </div>
             </div>
             <div className="sidebar-search">
